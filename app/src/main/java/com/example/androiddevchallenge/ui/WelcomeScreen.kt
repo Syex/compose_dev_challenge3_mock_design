@@ -17,6 +17,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -24,7 +25,7 @@ import com.example.androiddevchallenge.R
 import com.example.androiddevchallenge.ui.theme.MyTheme
 
 @Composable
-fun WelcomeScreen() {
+fun WelcomeScreen(onAnyButtonClicked: () -> Unit) {
     Box(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
@@ -34,7 +35,8 @@ fun WelcomeScreen() {
             contentDescription = null,
             modifier = Modifier
                 .fillMaxSize()
-                .background(color = MaterialTheme.colors.background)
+                .background(color = MaterialTheme.colors.background),
+            contentScale = ContentScale.FillBounds
         )
 
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
@@ -51,7 +53,7 @@ fun WelcomeScreen() {
                     .fillMaxWidth()
                     .padding(horizontal = 16.dp),
                 shape = RoundedCornerShape(20),
-                onClick = { /*TODO*/ }
+                onClick = onAnyButtonClicked
             ) {
                 Text(text = "SIGN UP")
             }
@@ -67,7 +69,7 @@ fun WelcomeScreen() {
                 colors = ButtonDefaults.buttonColors(
                     backgroundColor = MaterialTheme.colors.secondary
                 ),
-                onClick = { /*TODO*/ }
+                onClick = onAnyButtonClicked
             ) {
                 Text(text = "LOG IN")
             }
@@ -79,6 +81,6 @@ fun WelcomeScreen() {
 @Composable
 fun LightPreview() {
     MyTheme {
-        WelcomeScreen()
+        WelcomeScreen {}
     }
 }
